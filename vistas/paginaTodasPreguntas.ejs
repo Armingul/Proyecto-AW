@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <%-
+    include("headers")
+%>
+</head>
+
+<body>
+    <header>
+        <%-
+        include("headerLogged");
+    %>
+    </header>
+    <%-
+        include("busqueda");
+    %>
+
+    <div class="preguntas">
+
+        <div id="boxPregunta">
+            <div id="boxTituloPreguntas">
+                <label>Todas las preguntas</label>
+            </div>
+
+        <%-
+        include("preguntas");
+        %>
+
+        </div>
+</body>
+
+</html>

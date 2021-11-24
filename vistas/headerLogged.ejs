@@ -1,0 +1,22 @@
+<div id="cabeceraLog">
+    <div id="menu">
+
+        <a href="/preguntas" class="opcion" role="button">Preguntas</a>
+        <a href="/preguntas/preguntaSinResponder" class="opcion" role="button">Sin responder</a>
+        <a href="/usuarios" class="opcion" role="button">Usuarios</a>
+     
+    </div>
+
+    <div>
+        <img id="logo" src="/iconos/image.png">
+    </div>
+
+    <div id="perfil">
+        <img id="foto" src="/imagen/<%- imagen %>">
+        <form method="POST" action="/perfil">
+            <input id="ident" name="ident" type="hidden" value="<%-correo%>">
+            <input class="btnPerfil" type="submit" value="<%- usuarioActual.Nombre %>">
+        </form>
+        <a href="/logout" class="opcion" role="button">Cerrar sesión</a>
+    </div>
+</div>

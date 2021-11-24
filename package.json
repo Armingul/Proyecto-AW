@@ -1,0 +1,39 @@
+{
+  "name": "proyecto-gordo",
+  "version": "1.0.0",
+  "description": "Práctica final AW",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cargon16/ProyectoAW.git"
+  },
+  "keywords": [
+    "node",
+    "proyecto",
+    "aw",
+    "practica",
+    "final"
+  ],
+  "author": "Carlos González Torres, Sergio Villarroel Fernandez",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Cargon16/ProyectoAW/issues"
+  },
+  "homepage": "https://github.com/Cargon16/ProyectoAW#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "express-mysql-session": "^2.1.4",
+    "express-session": "^1.17.1",
+    "file-system": "^2.2.2",
+    "multer": "^1.4.2",
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.6",
+    "path": "^0.12.7",
+    "util": "^0.12.3"
+  }
+}

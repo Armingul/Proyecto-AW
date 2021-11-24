@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <%- include("headers") %>
+</head>
+
+<body>
+    <header>
+        <%- include("headerLogged"); %>
+    </header>
+    <%- include("busqueda"); %>
+
+        <div class="preguntas">
+
+            <div id="boxPregunta">
+                <div id="boxTituloPreguntas">
+                    <label>Usuarios</label>
+                </div>
+                <div>
+                    <form class="busquedaUsu" method="POST" action="/busquedaUsuario">
+                        <input id="inputBuscarUsu" name="nameUsuario" placeholder="Filtrar por usuario"> </input>
+                        <input id="buttonBuscarUsu" type="submit" value="Filtrar"></input>
+                    </form>
+                 
+                </div>
+                <div id="todosUsuarios">
+                    <%Usuarios.forEach(function(usuario, Usuarios){ %>
+                        <div class="divUsuario">
+                            <img id="foto" src="/imagen/<%- usuario.FotoPerfil %>">
+                            <form class="nombreUsu" method="POST" action="/perfil">
+                                <input id="ident" name="ident" type="hidden" value="<%-usuario.Correo%>">
+                                <input class="btnPerfil" type="submit" value="<%- usuario.Nombre %>">
+                            </form>
+                            <div class="datosPerfil">
+                                <label>
+                                    <%-usuario.Reputacion %>
+                                </label>
+
+                                <% if(usuario.tag !=null){ %>
+                                    <a id= "tag" href="/preguntas/etiqueta/<%-usuario.tag%>"><%=usuario.tag%></a>
+                                    <%}%>
+                            </div>
+                        </div>
+                        <% });%>
+                </div>
+            </div>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+<div id="boxSubGrupo">
+    <label><%- preguntas.length %> preguntas</label>
+    <a href="/preguntas/crearPregunta" id="buttonFormularPregunta" role="button">Formular pregunta</a>
+</div>
+
+<% preguntas.forEach(function(pregunta, preguntas){ %>
+<div class="pregunta">
+    <div class="info">
+        <a href="/preguntas/pregunta/<%= pregunta.ID_Pregunta%>">
+            <%= pregunta.Titulo%>
+        </a>
+        <p> <%= pregunta.Cuerpo.substring(0, 150) %>
+        </p>
+        <div class="tags">
+            <%
+            let obj = pregunta.tags;
+            for(let i =0; i < obj.length; ++i){ %>
+            <a class= "tag" href="/preguntas/etiqueta/<%- obj[i] %>"><%= obj[i] %></a>
+            <% }; %>
+        </div>
+
+
+    </div>
+    <div class="formulador">
+        <h2>Formulada:
+            <%- pregunta.Fecha.getDate()+"/"+ (pregunta.Fecha.getMonth()+1) +"/"+ pregunta.Fecha.getFullYear() %>
+        </h2>
+        <img id="foto" src="/imagen/<%- pregunta.FotoPerfil %>">
+        <form method="POST" action="/perfil">
+            <input id="ident" name="ident" type="hidden" value="<%-pregunta.ID_Usuario%>">
+            <input class="btnPerfil" type="submit" value="<%-pregunta.Nombre%>">
+        </form>
+    </div>
+</div>
+<%});%>
+</div>
+
+
+        

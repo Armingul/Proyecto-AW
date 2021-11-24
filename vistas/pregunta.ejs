@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include("headers") %>
+</head>
+
+<body>
+    <header>
+        <%- include("headerLogged"); %>
+    </header>
+    <%- include("busqueda"); %>
+
+        <div class="boxFormulario">
+
+            <div id="boxPregunta">
+                <div class="boxTituloQuestion">
+                    <h1>
+                        <%-pregunta.Titulo %>
+                    </h1>
+                </div>
+
+                <div class="visitas">
+                    <h2>Vista <%-pregunta.Visitas%> veces
+                    </h2>
+                </div>
+                <div class="votos">
+                    <h2>
+                        <%-pregunta.Votos%> Votos
+                    </h2>
+                    <form class="voto" action="/preguntas/vote" method="POST">
+                        <input type="hidden" value="10" name="v">
+                        <input type="hidden" value="<%- pregunta.ID_Pregunta%>" name="id">
+                        <input type="hidden" value="<%- pregunta.ID_Usuario %>" name="usuario">
+                        <input type="hidden" value="1" name="puntuacion">
+                        <% if(opt == "disabled"){%>
+                        <input type="image" src="/iconos/positive-vote.png" disabled>
+                        <%}else{%>
+                        <input type="image" src="/iconos/positive-vote.png">
+                        <%}%>
+                    </form>
+                    <form class="voto" action="/preguntas/vote" method="POST">
+                        <input type="hidden" value="-2" name="v">
+                        <input type="hidden" value="<%- pregunta.ID_Pregunta%>" name="id">
+                        <input type="hidden" value="<%- pregunta.ID_Usuario %>" name="usuario">
+                        <input type="hidden" value="-1" name="puntuacion">
+                        <% if(opt == "disabled"){%>
+                        <input type="image" src="/iconos/negative-vote.png" disabled>
+                        <%}else{%>
+                        <input type="image" src="/iconos/negative-vote.png">
+                        <%}%>
+                    </form>
+
+                </div>
+                <div class="infoPregunta">
+                    <div>
+                        <%- pregunta.Cuerpo %>
+                            <div class="tags">
+                                <%
+                                if(pregunta.tags != null){
+                                let obj = pregunta.tags.split(",");
+                                for(let i =0; i < obj.length; ++i){ %>
+                                    <a class= "tag" href="/preguntas/etiqueta/<%- obj[i] %>"><%= obj[i] %></a>
+                                <% }}; %>
+                            </div>
+                    </div>
+                </div>
+                <div class="formulante">
+                    <div class="formulador">
+                        <h2>Formulada:
+                            <%- pregunta.Fecha.getDate()+"/"+ (pregunta.Fecha.getMonth()+1) +"/"+
+                                pregunta.Fecha.getFullYear() %>
+                        </h2>
+                        <img id="foto" src="/imagen/<%- pregunta.FotoPerfil %>">
+                        <form method="POST" action="/perfil">
+                            <input id="ident" name="ident" type="hidden" value="<%-pregunta.ID_Usuario%>">
+                            <input class="btnPerfil" type="submit" value="<%-pregunta.Nombre%>">
+                        </form>
+                    </div>
+                </div>
+                <div class="numAnswers">
+                    <h2 class="numRespuestas">
+                        <%-respuestas.length%> Respuestas
+                    </h2>
+                </div>
+                <% respuestas.forEach(function(respuesta, respuestas){ %>
+                    <div class="respuesta">
+                        <div class="votos">
+                            <h2>
+                                <%-respuesta.Votos%> Votos
+                            </h2>
+                            <form class="voto" action="/preguntas/voteRespuesta" method="POST">
+                                <input type="hidden" value="10" name="v">
+                                <input type="hidden" value="<%- pregunta.ID_Pregunta%>" name="id">
+                                <input type="hidden" value="<%- respuesta.ID_Usuario %>" name="usuario">
+                                <input type="hidden" value="1" name="puntuacion">
+                                <input type="hidden" value="<%- respuesta.ID_Respuesta%>" name="respuesta">
+                                <% if(respuesta.votado == 1){%>
+                                    <input type="image" src="/iconos/positive-vote.png" disabled>
+                                    <%}else{%>
+                                    <input type="image" src="/iconos/positive-vote.png">
+                                <%}%>
+                            </form>
+                            <form class="voto" action="/preguntas/voteRespuesta" method="POST">
+                                <input type="hidden" value="-2" name="v">
+                                <input type="hidden" value="<%- pregunta.ID_Pregunta%>" name="id">
+                                <input type="hidden" value="<%- respuesta.ID_Usuario %>" name="usuario">
+                                <input type="hidden" value="-1" name="puntuacion">
+                                <input type="hidden" value="<%- respuesta.ID_Respuesta%>" name="respuesta">
+                                <% if(respuesta.votado == 1){%>
+                                    <input type="image" src="/iconos/negative-vote.png" disabled>
+                                    <%}else{%>
+                                    <input type="image" src="/iconos/negative-vote.png">
+                                <%}%>
+                            </form>
+        
+                        </div>
+                        <div class="info">
+                            <p>
+                                <%= respuesta.Cuerpo %>
+                            </p>
+                        </div>
+                        <div class="formulador">
+                            <h2>Formulada:
+                                <%- respuesta.Fecha.getDate()+"/"+ (respuesta.Fecha.getMonth()+1) +"/"+
+                                    respuesta.Fecha.getFullYear() %>
+                            </h2>
+                            <img id="foto" src="/imagen/<%- respuesta.FotoPerfil %>">
+                            <form method="POST" action="/perfil">
+                                <input id="ident" name="ident" type="hidden" value="<%-respuesta.ID_Usuario%>">
+                                <input class="btnPerfil" type="submit" value="<%-respuesta.Nombre%>">
+                            </form>
+                        </div>
+                    </div>
+                    <%});%>
+
+                        <form action="/preguntas/addRespuesta" method="POST" id="preguntaFormulada">
+                            <label id="tituloFormulario">Tu respuesta</label>
+                            <input id="inputCuerpoRespuesta" name="turespuesta" required pattern=".*\S+.*">
+                            <input type="hidden" value="<%- pregunta.ID_Pregunta%>" name="idPregunta">
+                            <div>
+                                <input id="buttonCrearCuentaResp" type="submit" value="Publica tu respuesta" />
+                            </div>
+
+                        </form>
+            </div>
+</body>
+
+</html>

@@ -1,0 +1,26 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: medium;
+}
+
+#tituloCabecera{
+    display: flex;
+    height: 20%;
+    background-color: #282828;
+    align-items: center;
+    padding-top: 1%;
+}
+#titulo{
+    display:block;
+    margin:auto;
+    width: 9%;
+    border-radius: 0%;
+}
+
+
+
+

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%-
+         include("headers")
+    %>
+</head>
+<body>
+    <header>
+        <%-  
+        include("headerNoLogged")
+        %>
+    </header>
+
+    <div id="boxFormulario">
+
+        <form id="registro" class="formularios" method="POST" action="/registro" enctype="multipart/form-data">
+
+            <%- msg %>
+            <label id = "textCorreo">Correo *</label>
+            <input id="inputCorreo" name="emailUsuario" type="email" required> </input>
+           
+            <label id = "textPassword">Contraseña *</label>
+            <input id="inputPassword" type="password" name="password" pattern=".{8,}" required title="La contraseña debe tener 8 caracteres mínimo"> </input>
+
+            <label id = "textPassword">Confirmar contraseña *</label>
+            <input id="inputPassword" type="password" name="passwordConfirm" pattern=".{8,}" required title="La contraseña debe tener 8 caracteres mínimo"> </input>
+            <label id = "textNombre">Nombre para mostrar*</label>
+            <input id="inputNombre"  name="nombreMostrar" required tittle="Debes introducir un nombre de usuario"> </input>
+           
+            <label id = "textPerfil">Foto de perfil*</label>
+            <input id = "inputPerfil" name="perfil" type="file" name="adjunto" accept=".jpg,.png"/>
+
+
+            <input id="buttonCrearCuenta" type="submit" value="Crear cuenta"/>
+            
+            <a href="login" id="buttonIniciarSesion" role="button">Iniciar sesion</a>
+           
+        </form>
+        
+    </div>
+   
+</body>
+</html>

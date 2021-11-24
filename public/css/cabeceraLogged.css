@@ -1,0 +1,71 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: medium;
+}
+
+#cabeceraLog{
+    height: 20%;
+   
+    background-color: #282828;
+    padding-top: 1%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: space-between;
+    flex-direction: row;
+ 
+}
+#logo{
+    width: 80%;
+    align-items: center;
+    border-radius: 0%;
+}
+
+
+#menu{
+    display: flex;
+    flex-direction: column;
+    margin-right: auto;
+    width: 10%;
+    margin-left: 2%;
+}
+.btnOpcion{
+    width: 100%;
+}
+.opcion{
+    margin-top: 2%;
+    margin-bottom: 5%;
+    padding: 2%;
+    background: #00B5AA;
+    border-radius: 10px;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+#perfil{
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    width: 10%;
+
+    margin-right: 2%;
+    align-items: center;
+
+
+}
+
+
+#foto{
+
+    width: 50%;
+    height: 50%;
+}
+
+
+
+
